@@ -159,7 +159,6 @@ footer{margin-top:50px;font-style:italic;color:var(--mute);font-size:17px}
     <h2>The Guest List</h2>
     <div class="gl">
       <div><h3>Attending</h3><ul id="yes"></ul></div>
-      <div><h3>Not attending</h3><ul id="no"></ul></div>
     </div>
     <footer>Trust no one. Not even the butler.</footer>
   </div>
@@ -195,11 +194,11 @@ footer{margin-top:50px;font-style:italic;color:var(--mute);font-size:17px}
     });
   }
   function load(){
-    if(!SCRIPT_URL){render("yes",[]);render("no",[]);return}
+    if(!SCRIPT_URL){render("yes",[]);return}
     fetch(SCRIPT_URL+"?t="+Date.now())
       .then(function(r){return r.json()})
-      .then(function(d){render("yes",d.attending||[]);render("no",d.notAttending||[])})
-      .catch(function(){note("yes","The list couldn\u2019t be loaded right now.");note("no","The list couldn\u2019t be loaded right now.")});
+      .then(function(d){render("yes",d.attending||[])})
+      .catch(function(){note("yes","The list couldn\u2019t be loaded right now.")});
   }
   load();
 
